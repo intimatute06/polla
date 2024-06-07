@@ -68,3 +68,53 @@ void editarProducto(char productos[][3][40], double precio[], int indice[]) {
         printf("Número de producto no válido.\n");
     }
 }
+            printf("Estado: Aprobado\n\n");
+        } else {
+            printf("Estado: Reprobado\n\n");
+        }
+    }
+}
+
+void buscarAlumnoXApellido(char alumnos[][2][20], double notas[][3]) {
+    char apellido[20];
+    printf("\nIngrese el apellido del alumno a buscar: ");
+    scanf("%s", apellido);
+    int encontrado = 0;
+    for(int i = 0; i < 6; i++) {
+        if(strcmp(alumnos[i][1], apellido) == 0) {
+            double promedio = (notas[i][0] + notas[i][1] + notas[i][2]) / 3.0;
+            printf("\nNombre: %s %s\n", alumnos[i][0], alumnos[i][1]);
+            printf("Notas: %.2lf %.2lf %.2lf\n", notas[i][0], notas[i][1], notas[i][2]);
+            printf("Promedio: %.2lf\n", promedio);
+            if(promedio >= 6.0) {
+                printf("Estado: Aprobado\n\n");
+            } else {
+                printf("Estado: Reprobado\n\n");
+            }
+            encontrado = 1;
+        }
+    }
+    if (!encontrado) {
+        printf("El alumno con apellido %s no fue encontrado.\n\n", apellido);
+    }
+}
+
+void editarCalificaciones(char alumnos[][2][20], double notas[][3]) {
+    char apellido[20];
+    printf("\nIngrese el apellido del alumno para editar sus calificaciones: ");
+    scanf("%s", apellido);
+    int encontrado = 0;
+    for(int i = 0; i < 6; i++) {
+        if(strcmp(alumnos[i][1], apellido) == 0) {
+            printf("\nIngrese las nuevas calificaciones del alumno %s %s: ", alumnos[i][0], alumnos[i][1]);
+            scanf("%lf %lf %lf", &notas[i][0], &notas[i][1], &notas[i][2]);
+            encontrado = 1;
+            printf("Calificaciones actualizadas correctamente.\n\n");
+            break;
+        }
+    }
+    if (!encontrado) {
+        printf("El alumno con apellido %s no fue encontrado.\n\n", apellido);
+    }
+}
+
